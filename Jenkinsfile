@@ -15,8 +15,8 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh 'echo"passed"'
-        git branch: 'main', url: 'https://github.com/shaunjohn-04/python-flask-app'
+        sh 'echo "passed"'
+       // git branch: 'main', url: 'https://github.com/shaunjohn-04/python-flask-app'
       }
     }
 
