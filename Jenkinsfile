@@ -2,9 +2,9 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_IMAGE  = "your-docker-hub-username/static-website"
+    DOCKER_IMAGE  = "shaunjohnmathew/static-website"
     GIT_REPO_NAME = "python-flask-app"
-    GIT_USER_NAME = "Doom710"
+    GIT_USER_NAME = "shaunjohn-04"
   }
 
   options {
@@ -22,7 +22,7 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         script {
-          def scannerHome = tool 'sonarscanner'
+          def scannerHome = tool 'SonarScanner'
           withSonarQubeEnv('sonarqube') {
             sh """
               ${scannerHome}/bin/sonar-scanner \\
@@ -56,7 +56,7 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
-            git config user.email "xyz@gmail.com"
+            git config user.email "shaunjohnmathew04@gmail.com"
             git config user.name "${GIT_USER_NAME}"
 
             sed -i "s|image: .*|image: ${DOCKER_IMAGE}:${BUILD_NUMBER}|g" k8s/deployment.yaml
